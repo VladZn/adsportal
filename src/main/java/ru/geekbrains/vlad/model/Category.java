@@ -6,8 +6,11 @@ import lombok.Setter;
 import ru.geekbrains.vlad.AbstractNamedEntity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 /**
  * @author Vladislav Zinchenko
@@ -19,6 +22,9 @@ import javax.validation.constraints.Size;
 @Setter
 @NoArgsConstructor
 public class Category extends AbstractNamedEntity {
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+    private List<Ad> ads;
 
     public Category(@NotBlank @Size(min = 2, max = 100) String name) {
         super(name);
