@@ -1,4 +1,4 @@
-package ru.geekbrains.vlad;
+package ru.geekbrains.vlad.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
