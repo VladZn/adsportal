@@ -3,6 +3,7 @@ package ru.geekbrains.vlad.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -18,7 +19,9 @@ import javax.validation.constraints.Size;
 @Entity
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
+@Table(name = "ads")
 public class Ad extends AbstractNamedEntity {
 
     @NotBlank
@@ -33,6 +36,11 @@ public class Ad extends AbstractNamedEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id", nullable = false)
+    private Company company;
 
     public Ad(@NotBlank @Size(min = 2, max = 100) String name) {
         super(name);
