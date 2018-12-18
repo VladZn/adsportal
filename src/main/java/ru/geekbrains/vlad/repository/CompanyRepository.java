@@ -10,7 +10,6 @@ import ru.geekbrains.vlad.model.Company;
  */
 
 @Repository
-@Transactional(readOnly = true)
 public interface CompanyRepository extends JpaRepository<Company, String> {
 
 }

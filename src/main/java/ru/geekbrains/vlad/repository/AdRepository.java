@@ -15,11 +15,8 @@ import java.util.List;
  */
 
 @Repository
-@Transactional
 public interface AdRepository extends JpaRepository<Ad, String> {
 
     List<Ad> findAdsByCategory_Id(String category_id);
 
-    @Query("SELECT a.company FROM Ad a JOIN FETCH a.company WHERE a.id = :id")
-    Company getCompany(String id);
 }

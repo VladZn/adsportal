@@ -10,6 +10,5 @@ import ru.geekbrains.vlad.model.Category;
  */
 
 @Repository
-@Transactional(readOnly = true)
 public interface CategoryRepository extends JpaRepository<Category, String> {
 }
