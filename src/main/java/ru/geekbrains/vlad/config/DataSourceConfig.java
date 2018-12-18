@@ -2,7 +2,10 @@ package ru.geekbrains.vlad.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -17,7 +20,10 @@ import java.util.Properties;
  * @author Vladislav Zinchenko
  */
 
+@Configuration
 @EnableTransactionManagement
+@EnableJpaRepositories("ru.geekbrains.vlad.repository")
+@ComponentScan("ru.geekbrains.vlad.service")
 @PropertySource("classpath:postgres.properties")
 public class DataSourceConfig {
 
