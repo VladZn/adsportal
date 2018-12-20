@@ -11,6 +11,7 @@ import ru.geekbrains.vlad.repository.CompanyRepository;
  */
 
 @Service
+@Transactional
 public class CompanyServiceImpl implements CompanyService{
 
     private final CompanyRepository repository;

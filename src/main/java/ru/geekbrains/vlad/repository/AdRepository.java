@@ -19,4 +19,6 @@ public interface AdRepository extends JpaRepository<Ad, String> {
 
     List<Ad> findAdsByCategory_Id(String category_id);
 
+    @Query("SELECT a FROM Ad a LEFT JOIN FETCH a.category LEFT JOIN FETCH a.company")
+    List<Ad> findAll();
 }

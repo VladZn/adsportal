@@ -49,6 +49,7 @@ public class AdServiceImpl implements AdService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Ad> getAll() {
         return repository.findAll();
     }
