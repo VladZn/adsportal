@@ -19,7 +19,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Getter
 @Setter
-@ToString
+//@ToString
 @NoArgsConstructor
 @Table(name = "ads")
 public class Ad extends AbstractNamedEntity {
@@ -30,6 +30,7 @@ public class Ad extends AbstractNamedEntity {
 
     @NotBlank
     @Size(min = 12, max = 12)
+    @Column(name = "phone_num")
     private String phoneNum;
 
     @NotNull
@@ -52,5 +53,17 @@ public class Ad extends AbstractNamedEntity {
         this.content = content;
         this.phoneNum = phoneNum;
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Ad{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", content='" + content + '\'' +
+                ", phoneNum='" + phoneNum + '\'' +
+//                ", category=" + category +
+//                ", company=" + company +
+                '}';
     }
 }
