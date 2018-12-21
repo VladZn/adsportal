@@ -4,6 +4,7 @@ import ru.geekbrains.vlad.model.Ad;
 import ru.geekbrains.vlad.model.Company;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Vladislav Zinchenko
@@ -12,9 +13,11 @@ import java.util.List;
 public interface AdService {
     Ad create(Ad ad);
 
+    Ad save(Ad ad);
+
     void delete(String id);
 
-    Ad getOne(String id);
+    Optional<Ad> findById(String id);
 
     Ad update(Ad ad);
 

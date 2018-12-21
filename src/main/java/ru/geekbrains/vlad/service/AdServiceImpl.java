@@ -8,6 +8,7 @@ import ru.geekbrains.vlad.model.Company;
 import ru.geekbrains.vlad.repository.AdRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Vladislav Zinchenko
@@ -33,13 +34,19 @@ public class AdServiceImpl implements AdService{
 
     @Override
     @Transactional
+    public Ad save(Ad ad) {
+        return repository.save(ad);
+    }
+
+    @Override
+    @Transactional
     public void delete(String id) {
         repository.deleteById(id);
     }
 
     @Override
-    public Ad getOne(String id) {
-        return repository.getOne(id);
+    public Optional<Ad> findById(String id) {
+        return repository.findById(id);
     }
 
     @Override

@@ -24,9 +24,24 @@
             <td>${ad.phoneNum}</td>
             <td>${ad.category}</td>
             <td>${ad.company}</td>
+            <td>
+                <a href="/ads/view/${ad.id}" >VIEW</a>
+            </td>
+            <td>
+                <a href="/ads/edit/${ad.id}" >EDIT</a>
+            </td>
+            <td>
+                <a href="/ads/delete/${ad.id}" >REMOVE</a>
+            </td>
         </tr>
     </c:forEach>
+
 </table>
+
+<form action="/ads/add">
+    <button type="submit">CREATE AD</button>
+</form>
+
 
 </body>
 </html>
