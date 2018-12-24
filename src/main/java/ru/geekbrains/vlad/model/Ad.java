@@ -19,7 +19,6 @@ import javax.validation.constraints.Size;
 @Entity
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @Table(name = "ads")
 public class Ad extends AbstractNamedEntity {
@@ -28,16 +27,17 @@ public class Ad extends AbstractNamedEntity {
     @Size(min = 10, max = 255)
     private String content;
 
-    @NotBlank
+    //@NotBlank
     @Size(min = 12, max = 12)
+    @Column(name = "phone_num")
     private String phoneNum;
 
-    @NotNull
+    //@NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    @NotNull
+    //@NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id", nullable = false)
     private Company company;
@@ -52,5 +52,17 @@ public class Ad extends AbstractNamedEntity {
         this.content = content;
         this.phoneNum = phoneNum;
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Ad{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", content='" + content + '\'' +
+                ", phoneNum='" + phoneNum + '\'' +
+//                ", category=" + category +
+//                ", company=" + company +
+                '}';
     }
 }
