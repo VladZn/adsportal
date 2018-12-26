@@ -15,7 +15,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan("ru.geekbrains.vlad.controller")
+@ComponentScan(basePackages = {"ru.geekbrains.vlad.controller", "ru.geekbrains.vlad.rest"})
 public class WebConfig implements WebMvcConfigurer {
 
     @Override
