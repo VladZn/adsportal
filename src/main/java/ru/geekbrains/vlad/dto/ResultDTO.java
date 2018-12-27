@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class ResultDTO {
 
-    private boolean success;
+    private boolean success = true;
 
     private String message;
 

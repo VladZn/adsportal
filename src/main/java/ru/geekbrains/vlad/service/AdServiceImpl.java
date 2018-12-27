@@ -3,9 +3,12 @@ package ru.geekbrains.vlad.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.geekbrains.vlad.dto.AdDTO;
 import ru.geekbrains.vlad.model.Ad;
 import ru.geekbrains.vlad.model.Company;
 import ru.geekbrains.vlad.repository.AdRepository;
+import ru.geekbrains.vlad.repository.CategoryRepository;
+import ru.geekbrains.vlad.repository.CompanyRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,9 +24,15 @@ public class AdServiceImpl implements AdService{
 
     private final AdRepository repository;
 
+    private final CategoryRepository categoryRepository;
+
+    private final CompanyRepository companyRepository;
+
     @Autowired
-    public AdServiceImpl(AdRepository repository) {
+    public AdServiceImpl(AdRepository repository, CategoryRepository categoryRepository, CompanyRepository companyRepository) {
         this.repository = repository;
+        this.categoryRepository = categoryRepository;
+        this.companyRepository = companyRepository;
     }
 
     @Override
@@ -34,8 +43,17 @@ public class AdServiceImpl implements AdService{
 
     @Override
     @Transactional
-    public Ad save(Ad ad) {
-        return repository.save(ad);
+    public void save(final AdDTO adDTO) {
+        if (adDTO == null) return;
+        Optional<Ad> optional = repository.findById(adDTO.getId());
+        Ad ad = optional.orElseGet(Ad::new);
+        ad.setId(adDTO.getId());
+        ad.setName(adDTO.getName());
+        ad.setContent(adDTO.getContent());
+        ad.setPhoneNum(adDTO.getPhoneNum());
+        ad.setCategory(categoryRepository.getOne(adDTO.getCategoryId()));
+        ad.setCompany(companyRepository.getOne(adDTO.getCompanyId()));
+        repository.save(ad);
     }
 
     @Override

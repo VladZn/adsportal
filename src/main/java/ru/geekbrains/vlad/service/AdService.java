@@ -1,5 +1,6 @@
 package ru.geekbrains.vlad.service;
 
+import ru.geekbrains.vlad.dto.AdDTO;
 import ru.geekbrains.vlad.model.Ad;
 import ru.geekbrains.vlad.model.Company;
 
@@ -13,7 +14,7 @@ import java.util.Optional;
 public interface AdService {
     Ad create(Ad ad);
 
-    Ad save(Ad ad);
+    void save(final AdDTO adDTO);
 
     void delete(String id);
 
