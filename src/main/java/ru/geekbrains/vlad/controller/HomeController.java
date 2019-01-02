@@ -1,10 +1,10 @@
 package ru.geekbrains.vlad.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import ru.geekbrains.vlad.service.AdService;
 
 /**
  * @author Vladislav Zinchenko
@@ -12,13 +12,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 
 @Controller
-@RequestMapping("/hello")
+//@RequestMapping("/")
 public class HomeController {
 
-    @RequestMapping(value = "/{user}", method = RequestMethod.GET)
-    public String hello(Model model, @PathVariable(value = "user") String user) {
-        model.addAttribute("user", user);
-        return "home";
+    @Autowired
+    private AdService service;
+
+    @GetMapping("/")
+    public String home(Model model) {
+        model.addAttribute("ads", service.getAll());
+        return "ads-list";
     }
 
 }
